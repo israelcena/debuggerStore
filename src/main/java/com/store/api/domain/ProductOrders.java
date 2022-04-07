@@ -34,5 +34,5 @@ public class ProductOrders {
             joinColumns = @JoinColumn(name="orders_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id")
     )
-    private List<Client> clients;
+    private List<Customer> customers;
 }

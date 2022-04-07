@@ -1,6 +1,6 @@
 package com.store.api.service;
 
-import com.store.api.domain.Client;
+import com.store.api.domain.Customer;
 import com.store.api.domain.Product;
 import com.store.api.domain.ProductOrders;
 import com.store.api.dto.ProductOrdersDTO;
@@ -23,7 +23,7 @@ public class ProductOrdersService {
 
     public void create(ProductOrdersDTO ordersDTO) {
         ProductOrders orders = new ProductOrders();
-        orders.setClients(List.of(getClientById(ordersDTO.getClientId()).get()));
+        orders.setCustomers(List.of(getClientById(ordersDTO.getClientId()).get()));
         orders.setProducts(getProductsByIds(ordersDTO.getProductIdList()));
         productOrdersRepository.save(orders);
     }
@@ -32,7 +32,7 @@ public class ProductOrdersService {
         return productRepository.findAllById(productsIds);
     }
 
-    private Optional<Client> getClientById(Long clientId) {
+    private Optional<Customer> getClientById(Long clientId) {
         return clientRepository.findById(clientId);
     }
 
