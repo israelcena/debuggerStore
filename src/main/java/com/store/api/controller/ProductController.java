@@ -1,6 +1,7 @@
 package com.store.api.controller;
 
 import com.store.api.domain.Product;
+import com.store.api.dto.ProductResponse;
 import com.store.api.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,12 +25,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAllProducts() {
+    public List<ProductResponse> getAllProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{productCode}")
-    public Product getAllProducts(@PathVariable UUID productCode) {
+    public ProductResponse getAllProducts(@PathVariable UUID productCode) {
         return productService.getProductByCode(productCode);
     }
 

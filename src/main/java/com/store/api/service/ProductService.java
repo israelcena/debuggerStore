@@ -1,12 +1,14 @@
 package com.store.api.service;
 
 import com.store.api.domain.Product;
+import com.store.api.dto.ProductResponse;
 import com.store.api.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -18,12 +20,12 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductResponse> getAllProducts() {
+        return productRepository.findAll().stream().map(ProductResponse::converter).collect(Collectors.toList());
     }
 
-    public Product getProductByCode(UUID productCode){
-        return productRepository.findByProductCode(productCode);
+    public ProductResponse getProductByCode(UUID productCode){
+        return ProductResponse.converter(productRepository.findByProductCode(productCode));
     }
 
 }
