@@ -25,8 +25,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductResponse> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductResponse> getAllProducts(@RequestParam(defaultValue = "0") Integer pageNo,
+                                                @RequestParam(defaultValue = "2") Integer pageSize) {
+        return productService.getAllProducts(pageNo, pageSize);
     }
 
     @GetMapping("/{productCode}")

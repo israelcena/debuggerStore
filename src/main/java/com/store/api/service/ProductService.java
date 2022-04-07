@@ -4,6 +4,9 @@ import com.store.api.domain.Product;
 import com.store.api.dto.ProductResponse;
 import com.store.api.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +23,10 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public List<ProductResponse> getAllProducts() {
-        return productRepository.findAll().stream().map(ProductResponse::converter).collect(Collectors.toList());
+    public List<ProductResponse> getAllProducts(Integer pageNo, Integer pageSize) {
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+        return productRepository.findAll(pageable).stream().map(ProductResponse::converter).collect(Collectors.toList());
     }
 
     public ProductResponse getProductByCode(UUID productCode){
