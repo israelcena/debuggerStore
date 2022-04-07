@@ -2,6 +2,7 @@ package com.store.api.controller;
 
 
 import com.store.api.domain.ProductOrders;
+import com.store.api.dto.ProductOrderResponse;
 import com.store.api.dto.ProductOrdersRequest;
 import com.store.api.service.ProductOrdersService;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class ProductOrdersController {
     }
 
     @GetMapping
-    public List<ProductOrders> getOrders() {
+    public List<ProductOrderResponse> getOrders() {
         return productOrdersService.getAllOrders();
     }
 }

@@ -4,6 +4,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,8 @@ public class ProductOrders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private UUID orderCode = UUID.randomUUID();
 
     @CreationTimestamp
     private ZonedDateTime orderTime;

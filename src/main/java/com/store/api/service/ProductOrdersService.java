@@ -3,6 +3,7 @@ package com.store.api.service;
 import com.store.api.domain.Customer;
 import com.store.api.domain.Product;
 import com.store.api.domain.ProductOrders;
+import com.store.api.dto.ProductOrderResponse;
 import com.store.api.dto.ProductOrdersRequest;
 import com.store.api.repository.ClientRepository;
 import com.store.api.repository.ProductOrdersRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -36,8 +38,8 @@ public class ProductOrdersService {
         return clientRepository.findById(clientId);
     }
 
-    public List<ProductOrders> getAllOrders() {
-        return productOrdersRepository.findAll();
+    public List<ProductOrderResponse> getAllOrders() {
+        return productOrdersRepository.findAll().stream().map(ProductOrderResponse::converter).collect(Collectors.toList());
     }
 
 }
