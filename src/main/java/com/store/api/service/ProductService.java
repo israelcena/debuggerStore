@@ -5,6 +5,9 @@ import com.store.api.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @AllArgsConstructor
 @Service
 public class ProductService {
@@ -14,4 +17,13 @@ public class ProductService {
     public void create(Product product) {
         productRepository.save(product);
     }
+
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    public Product getProductByCode(UUID productCode){
+        return productRepository.findByProductCode(productCode);
+    }
+
 }

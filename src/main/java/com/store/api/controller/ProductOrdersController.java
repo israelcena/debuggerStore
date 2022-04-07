@@ -1,7 +1,7 @@
 package com.store.api.controller;
 
 
-import com.store.api.dto.ProductOrdersDTO;
+import com.store.api.dto.ProductOrdersRequest;
 import com.store.api.service.ProductOrdersService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ public class ProductOrdersController {
     private final ProductOrdersService productOrdersService;
 
     @PostMapping()
-    public ResponseEntity<String> create(@RequestBody ProductOrdersDTO ordersDTO){
+    public ResponseEntity<String> create(@RequestBody ProductOrdersRequest ordersDTO){
         productOrdersService.create(ordersDTO);
         return new ResponseEntity<String>("Order registered successfully", HttpStatus.OK);
     }
