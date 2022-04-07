@@ -5,6 +5,7 @@ import javax.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -18,6 +19,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private UUID productCode = UUID.randomUUID();
     private String name;
     private Long productQuantity;
     private BigDecimal price;
