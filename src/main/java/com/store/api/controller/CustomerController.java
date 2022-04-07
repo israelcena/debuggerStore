@@ -1,6 +1,7 @@
 package com.store.api.controller;
 
 import com.store.api.domain.Customer;
+import com.store.api.dto.CustomerResponse;
 import com.store.api.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,8 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getCustomers(@RequestParam(defaultValue = "0") Integer pageNo,
-                                       @RequestParam(defaultValue = "2") Integer pageSize) {
+    public List<CustomerResponse> getCustomers(@RequestParam(defaultValue = "0") Integer pageNo,
+                                               @RequestParam(defaultValue = "2") Integer pageSize) {
 
         return customerService.getCustomers(pageNo, pageSize);
     }

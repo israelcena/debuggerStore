@@ -36,4 +36,8 @@ public class ProductOrdersService {
         return clientRepository.findById(clientId);
     }
 
+    public List<ProductOrders> getAllOrders() {
+        return productOrdersRepository.findAll();
+    }
+
 }

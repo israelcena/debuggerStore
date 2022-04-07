@@ -1,15 +1,15 @@
 package com.store.api.controller;
 
 
+import com.store.api.domain.ProductOrders;
 import com.store.api.dto.ProductOrdersRequest;
 import com.store.api.service.ProductOrdersService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -22,5 +22,10 @@ public class ProductOrdersController {
     public ResponseEntity<String> create(@RequestBody ProductOrdersRequest ordersDTO){
         productOrdersService.create(ordersDTO);
         return new ResponseEntity<String>("Order registered successfully", HttpStatus.OK);
+    }
+
+    @GetMapping
+    public List<ProductOrders> getOrders() {
+        return productOrdersService.getAllOrders();
     }
 }
