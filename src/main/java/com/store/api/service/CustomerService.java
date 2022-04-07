@@ -3,6 +3,9 @@ package com.store.api.service;
 import com.store.api.domain.Customer;
 import com.store.api.repository.ClientRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +20,10 @@ public class CustomerService {
         clientRepository.save(customer);
     }
 
-    public List<Customer> getCustomers() {
-        return clientRepository.findAll();
+    public List<Customer> getCustomers(Integer pageNo, Integer pageSize) {
+        Sort sort = Sort.by("id").descending();
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+        return clientRepository.findAll(pageable).getContent();
     }
 
 }

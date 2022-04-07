@@ -23,8 +23,10 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getCustomers() {
-        return customerService.getCustomers();
+    public List<Customer> getCustomers(@RequestParam(defaultValue = "0") Integer pageNo,
+                                       @RequestParam(defaultValue = "2") Integer pageSize) {
+
+        return customerService.getCustomers(pageNo, pageSize);
     }
 
 }
