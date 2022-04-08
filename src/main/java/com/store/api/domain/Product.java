@@ -21,7 +21,7 @@ public class Product {
 
     private UUID productCode = UUID.randomUUID();
     private String name;
-    private Long productQuantity;
+    private Integer productQuantity;
     private BigDecimal price;
 
 }

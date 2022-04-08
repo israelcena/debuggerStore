@@ -1,6 +1,7 @@
 package com.store.api.dto;
 
 import com.store.api.domain.Product;
+import com.store.api.domain.ProductOrders;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
 public class ProductResponse {
     private UUID productCode;
     private String name;
-    private Long productQuantity;
+    private Integer productQuantity;
     private BigDecimal price;
 
     public static ProductResponse converter(Product product) {
@@ -23,4 +24,5 @@ public class ProductResponse {
 
         return productResponse;
     }
+
 }

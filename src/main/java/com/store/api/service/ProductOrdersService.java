@@ -6,6 +6,7 @@ import com.store.api.domain.ProductOrders;
 import com.store.api.dto.ProductOrderResponse;
 import com.store.api.dto.ProductOrdersRequest;
 import com.store.api.dto.ProductRequest;
+import com.store.api.dto.ProductResponse;
 import com.store.api.repository.CustomerRepository;
 import com.store.api.repository.ProductOrdersRepository;
 import com.store.api.repository.ProductRepository;
@@ -39,6 +40,7 @@ public class ProductOrdersService {
        List<Product> products = new ArrayList<>();
        for (ProductRequest productRequest : productRequests) {
            Product product = productRepository.findByProductCode(productRequest.getProductCode());
+           product.setProductQuantity(productRequest.getProductQuantity());
            products.add(product);
        }
        return products;
