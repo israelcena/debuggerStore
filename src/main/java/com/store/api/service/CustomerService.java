@@ -2,7 +2,7 @@ package com.store.api.service;
 
 import com.store.api.domain.Customer;
 import com.store.api.dto.CustomerResponse;
-import com.store.api.repository.ClientRepository;
+import com.store.api.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerService {
 
-    private final ClientRepository clientRepository;
+    private final CustomerRepository customerRepository;
 
     public void create(Customer customer) {
-        clientRepository.save(customer);
+        customerRepository.save(customer);
     }
 
     public List<CustomerResponse> getCustomers(Integer pageNo, Integer pageSize) {
         Sort sort = Sort.by("id").descending();
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
-        return clientRepository.findAll(pageable).getContent().stream().map(CustomerResponse::converter).collect(Collectors.toList());
+        return customerRepository.findAll(pageable).getContent().stream().map(CustomerResponse::converter).collect(Collectors.toList());
     }
 
 }

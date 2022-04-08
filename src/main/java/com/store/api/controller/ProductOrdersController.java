@@ -1,6 +1,8 @@
 package com.store.api.controller;
 
 
+import com.store.api.domain.Customer;
+import com.store.api.domain.ProductOrders;
 import com.store.api.dto.ProductOrderResponse;
 import com.store.api.dto.ProductOrdersRequest;
 import com.store.api.service.ProductOrdersService;
@@ -28,4 +30,10 @@ public class ProductOrdersController {
     public List<ProductOrderResponse> getOrders() {
         return productOrdersService.getAllOrders();
     }
+
+    @GetMapping("/{document}")
+    public List<ProductOrderResponse> getOrderByDocument(@PathVariable String document){
+        return productOrdersService.getOrderByDocument(document);
+    }
+
 }

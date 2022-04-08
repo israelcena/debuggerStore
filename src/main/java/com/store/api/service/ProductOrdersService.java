@@ -5,7 +5,7 @@ import com.store.api.domain.Product;
 import com.store.api.domain.ProductOrders;
 import com.store.api.dto.ProductOrderResponse;
 import com.store.api.dto.ProductOrdersRequest;
-import com.store.api.repository.ClientRepository;
+import com.store.api.repository.CustomerRepository;
 import com.store.api.repository.ProductOrdersRepository;
 import com.store.api.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class ProductOrdersService {
 
     private final ProductOrdersRepository productOrdersRepository;
     private final ProductRepository productRepository;
-    private final ClientRepository clientRepository;
+    private final CustomerRepository customerRepository;
 
     public void create(ProductOrdersRequest ordersDTO) {
         ProductOrders orders = new ProductOrders();
@@ -35,11 +35,16 @@ public class ProductOrdersService {
     }
 
     private Optional<Customer> getClientById(Long clientId) {
-        return clientRepository.findById(clientId);
+        return customerRepository.findById(clientId);
     }
 
     public List<ProductOrderResponse> getAllOrders() {
         return productOrdersRepository.findAll().stream().map(ProductOrderResponse::converter).collect(Collectors.toList());
+    }
+
+    public List<ProductOrderResponse> getOrderByDocument(String document){
+       Customer customer = customerRepository.findByDocument(document);
+       return customer.getProductOrdersList().stream().map(ProductOrderResponse::converter).collect(Collectors.toList());
     }
 
 }
