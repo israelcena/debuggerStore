@@ -31,11 +31,11 @@ public class ProductOrders {
     @ManyToMany
     private List<Product> products;
 
-    @ManyToMany
+    @ManyToOne
     @JoinTable(
             name="client_orders",
             joinColumns = @JoinColumn(name="orders_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id")
     )
-    private List<Customer> customers;
+    private Customer customer;
 }

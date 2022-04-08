@@ -1,6 +1,6 @@
 package com.store.api.dto;
 
-import com.store.api.domain.Customer;
+
 import com.store.api.domain.Product;
 import com.store.api.domain.ProductOrders;
 import lombok.Getter;
@@ -22,14 +22,13 @@ public class ProductOrderResponse {
     private BigDecimal priceTotal;
 
     public static ProductOrderResponse converter(ProductOrders productOrders) {
-        Optional<Customer> customer = productOrders.getCustomers().stream().findFirst();
         List<Product> products = productOrders.getProducts();
         List<BigDecimal> prices = products.stream().map(Product::getPrice).toList();
         BigDecimal priceTotal = prices.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
 
         ProductOrderResponse productOrderResponse = new ProductOrderResponse();
         productOrderResponse.setOrderCode(productOrders.getOrderCode());
-        productOrderResponse.setCustomerCode(customer.get().getCustomerCode());
+        productOrderResponse.setCustomerCode(productOrders.getCustomer().getCustomerCode());
         productOrderResponse.setOrderTime(productOrders.getOrderTime());
         productOrderResponse.setProducts(products.stream().map(ProductResponse::converter).collect(Collectors.toList()));
         productOrderResponse.setPriceTotal(priceTotal);

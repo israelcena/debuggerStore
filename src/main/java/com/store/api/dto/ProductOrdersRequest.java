@@ -4,10 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
-@Setter
-@Getter
+@Setter @Getter
 public class ProductOrdersRequest {
-    private List<Long> productIdList;
-    private Long clientId;
+    private List<ProductRequest> products;
+    private UUID consumerCode;
 }
