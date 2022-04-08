@@ -28,7 +28,7 @@ public class ProductOrders {
     @UpdateTimestamp
     private ZonedDateTime orderUpdated;
 
-    @OneToMany
+    @ManyToMany
     private List<Product> products;
 
     @ManyToMany
